@@ -3,7 +3,6 @@
 namespace OpenActive\Models\SchemaOrg;
 
 /**
- * This type is derived from [Organization](https://schema.org/Organization), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
  *
  */
 class Airline extends \OpenActive\Models\SchemaOrg\Organization
@@ -17,14 +16,6 @@ class Airline extends \OpenActive\Models\SchemaOrg\Organization
     }
 
     /**
-     * The type of boarding policy used by the airline (e.g. zone-based or group-based).
-     *
-     *
-     * @var \OpenActive\Enums\BoardingPolicyType|null
-     */
-    protected $boardingPolicy;
-
-    /**
      * IATA identifier for an airline or airport.
      *
      *
@@ -33,29 +24,12 @@ class Airline extends \OpenActive\Models\SchemaOrg\Organization
     protected $iataCode;
 
     /**
-     * @return \OpenActive\Enums\BoardingPolicyType|null
+     * The type of boarding policy used by the airline (e.g. zone-based or group-based).
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\BoardingPolicyType|null
      */
-    public function getBoardingPolicy()
-    {
-        return $this->boardingPolicy;
-    }
-
-    /**
-     * @param \OpenActive\Enums\BoardingPolicyType|null $boardingPolicy
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBoardingPolicy($boardingPolicy)
-    {
-        $types = array(
-            "\OpenActive\Enums\BoardingPolicyType",
-            "null",
-        );
-
-        $boardingPolicy = self::checkTypes($boardingPolicy, $types);
-
-        $this->boardingPolicy = $boardingPolicy;
-    }
+    protected $boardingPolicy;
 
     /**
      * @return string
@@ -79,6 +53,31 @@ class Airline extends \OpenActive\Models\SchemaOrg\Organization
         $iataCode = self::checkTypes($iataCode, $types);
 
         $this->iataCode = $iataCode;
+    }
+
+    /**
+     * @return \OpenActive\Enums\SchemaOrg\BoardingPolicyType|null
+     */
+    public function getBoardingPolicy()
+    {
+        return $this->boardingPolicy;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\BoardingPolicyType|null $boardingPolicy
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBoardingPolicy($boardingPolicy)
+    {
+        $types = array(
+            "\OpenActive\Enums\SchemaOrg\BoardingPolicyType",
+            "null",
+        );
+
+        $boardingPolicy = self::checkTypes($boardingPolicy, $types);
+
+        $this->boardingPolicy = $boardingPolicy;
     }
 
 }

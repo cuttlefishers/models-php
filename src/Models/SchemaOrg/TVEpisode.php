@@ -16,6 +16,14 @@ class TVEpisode extends \OpenActive\Models\SchemaOrg\Episode
     }
 
     /**
+     * The TV series to which this episode or season belongs.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\TVSeries
+     */
+    protected $partOfTVSeries;
+
+    /**
      * The country of the principal offices of the production company or individual responsible for the movie or program.
      *
      *
@@ -24,12 +32,36 @@ class TVEpisode extends \OpenActive\Models\SchemaOrg\Episode
     protected $countryOfOrigin;
 
     /**
-     * The TV series to which this episode or season belongs.
+     * Languages in which subtitles/captions are available, in <a href="http://tools.ietf.org/html/bcp47">IETF BCP 47 standard format</a>.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\TVSeries
+     * @var string|\OpenActive\Models\SchemaOrg\Language
      */
-    protected $partOfTVSeries;
+    protected $subtitleLanguage;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\TVSeries
+     */
+    public function getPartOfTVSeries()
+    {
+        return $this->partOfTVSeries;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\TVSeries $partOfTVSeries
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPartOfTVSeries($partOfTVSeries)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\TVSeries",
+        );
+
+        $partOfTVSeries = self::checkTypes($partOfTVSeries, $types);
+
+        $this->partOfTVSeries = $partOfTVSeries;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Country
@@ -56,27 +88,28 @@ class TVEpisode extends \OpenActive\Models\SchemaOrg\Episode
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\TVSeries
+     * @return string|\OpenActive\Models\SchemaOrg\Language
      */
-    public function getPartOfTVSeries()
+    public function getSubtitleLanguage()
     {
-        return $this->partOfTVSeries;
+        return $this->subtitleLanguage;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\TVSeries $partOfTVSeries
+     * @param string|\OpenActive\Models\SchemaOrg\Language $subtitleLanguage
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPartOfTVSeries($partOfTVSeries)
+    public function setSubtitleLanguage($subtitleLanguage)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\TVSeries",
+            "string",
+            "\OpenActive\Models\SchemaOrg\Language",
         );
 
-        $partOfTVSeries = self::checkTypes($partOfTVSeries, $types);
+        $subtitleLanguage = self::checkTypes($subtitleLanguage, $types);
 
-        $this->partOfTVSeries = $partOfTVSeries;
+        $this->subtitleLanguage = $subtitleLanguage;
     }
 
 }

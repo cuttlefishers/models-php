@@ -1,0 +1,83 @@
+<?php
+
+namespace OpenActive\Models\SchemaOrg;
+
+/**
+ *
+ */
+class CategoryCode extends \OpenActive\Models\SchemaOrg\DefinedTerm
+{
+    /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:CategoryCode";
+    }
+
+    /**
+     * A <a class="localLink" href="https://schema.org/CategoryCodeSet">CategoryCodeSet</a> that contains this category code.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\CategoryCodeSet|string
+     */
+    protected $inCodeSet;
+
+    /**
+     * A short textual code that uniquely identifies the value.
+     *
+     *
+     * @var string
+     */
+    protected $codeValue;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\CategoryCodeSet|string
+     */
+    public function getInCodeSet()
+    {
+        return $this->inCodeSet;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\CategoryCodeSet|string $inCodeSet
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setInCodeSet($inCodeSet)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\CategoryCodeSet",
+            "string",
+        );
+
+        $inCodeSet = self::checkTypes($inCodeSet, $types);
+
+        $this->inCodeSet = $inCodeSet;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCodeValue()
+    {
+        return $this->codeValue;
+    }
+
+    /**
+     * @param string $codeValue
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCodeValue($codeValue)
+    {
+        $types = array(
+            "string",
+        );
+
+        $codeValue = self::checkTypes($codeValue, $types);
+
+        $this->codeValue = $codeValue;
+    }
+
+}

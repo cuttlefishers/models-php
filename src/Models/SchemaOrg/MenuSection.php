@@ -16,14 +16,6 @@ class MenuSection extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * A subgrouping of the menu (by dishes, course, serving time period, etc.).
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MenuSection
-     */
-    protected $hasMenuSection;
-
-    /**
      * A food or drink item contained in a menu or menu section.
      *
      *
@@ -32,28 +24,12 @@ class MenuSection extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $hasMenuItem;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MenuSection
+     * A subgrouping of the menu (by dishes, course, serving time period, etc.).
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MenuSection
      */
-    public function getHasMenuSection()
-    {
-        return $this->hasMenuSection;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\MenuSection $hasMenuSection
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setHasMenuSection($hasMenuSection)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\MenuSection",
-        );
-
-        $hasMenuSection = self::checkTypes($hasMenuSection, $types);
-
-        $this->hasMenuSection = $hasMenuSection;
-    }
+    protected $hasMenuSection;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\MenuItem
@@ -77,6 +53,30 @@ class MenuSection extends \OpenActive\Models\SchemaOrg\CreativeWork
         $hasMenuItem = self::checkTypes($hasMenuItem, $types);
 
         $this->hasMenuItem = $hasMenuItem;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MenuSection
+     */
+    public function getHasMenuSection()
+    {
+        return $this->hasMenuSection;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MenuSection $hasMenuSection
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setHasMenuSection($hasMenuSection)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\MenuSection",
+        );
+
+        $hasMenuSection = self::checkTypes($hasMenuSection, $types);
+
+        $this->hasMenuSection = $hasMenuSection;
     }
 
 }

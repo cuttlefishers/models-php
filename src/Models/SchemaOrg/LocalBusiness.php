@@ -16,14 +16,28 @@ class LocalBusiness extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * The currency accepted.<br/><br/>
-     * 
-     * Use standard formats: <a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217 currency format</a> e.g. "USD"; <a href="https://en.wikipedia.org/wiki/List_of_cryptocurrencies">Ticker symbol</a> for cryptocurrencies e.g. "BTC"; well known names for <a href="https://en.wikipedia.org/wiki/Local_exchange_trading_system">Local Exchange Tradings Systems</a> (LETS) and other currency types e.g. "Ithaca HOUR".
+     * The price range of the business, for example <code>$$$</code>.
      *
      *
      * @var string
      */
-    protected $currenciesAccepted;
+    protected $priceRange;
+
+    /**
+     * The larger organization that this local business is a branch of, if any. Not to be confused with (anatomical)<a class="localLink" href="https://schema.org/branch">branch</a>.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization
+     */
+    protected $branchOf;
+
+    /**
+     * Cash, Credit Card, Cryptocurrency, Local Exchange Tradings System, etc.
+     *
+     *
+     * @var string
+     */
+    protected $paymentAccepted;
 
     /**
      * The general opening hours for a business. Opening hours can be specified as a weekly time range, starting with days, then times per day. Multiple days can be listed with commas ',' separating each day. Day or time ranges are specified using a hyphen '-'.<br/><br/>
@@ -42,51 +56,85 @@ class LocalBusiness extends \OpenActive\Models\SchemaOrg\Place
     protected $openingHours;
 
     /**
-     * Cash, Credit Card, Cryptocurrency, Local Exchange Tradings System, etc.
+     * The currency accepted.<br/><br/>
+     * 
+     * Use standard formats: <a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217 currency format</a> e.g. "USD"; <a href="https://en.wikipedia.org/wiki/List_of_cryptocurrencies">Ticker symbol</a> for cryptocurrencies e.g. "BTC"; well known names for <a href="https://en.wikipedia.org/wiki/Local_exchange_trading_system">Local Exchange Tradings Systems</a> (LETS) and other currency types e.g. "Ithaca HOUR".
      *
      *
      * @var string
      */
-    protected $paymentAccepted;
-
-    /**
-     * The larger organization that this local business is a branch of, if any. Not to be confused with (anatomical)<a class="localLink" href="https://schema.org/branch">branch</a>.
-     *
-     *
-     * @var Organization
-     */
-    protected $branchOf;
-
-    /**
-     * The price range of the business, for example <code>$$$</code>.
-     *
-     *
-     * @var string
-     */
-    protected $priceRange;
+    protected $currenciesAccepted;
 
     /**
      * @return string
      */
-    public function getCurrenciesAccepted()
+    public function getPriceRange()
     {
-        return $this->currenciesAccepted;
+        return $this->priceRange;
     }
 
     /**
-     * @param string $currenciesAccepted
+     * @param string $priceRange
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setCurrenciesAccepted($currenciesAccepted)
+    public function setPriceRange($priceRange)
     {
         $types = array(
             "string",
         );
 
-        $currenciesAccepted = self::checkTypes($currenciesAccepted, $types);
+        $priceRange = self::checkTypes($priceRange, $types);
 
-        $this->currenciesAccepted = $currenciesAccepted;
+        $this->priceRange = $priceRange;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization
+     */
+    public function getBranchOf()
+    {
+        return $this->branchOf;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Organization $branchOf
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBranchOf($branchOf)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Organization",
+        );
+
+        $branchOf = self::checkTypes($branchOf, $types);
+
+        $this->branchOf = $branchOf;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPaymentAccepted()
+    {
+        return $this->paymentAccepted;
+    }
+
+    /**
+     * @param string $paymentAccepted
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPaymentAccepted($paymentAccepted)
+    {
+        $types = array(
+            "string",
+        );
+
+        $paymentAccepted = self::checkTypes($paymentAccepted, $types);
+
+        $this->paymentAccepted = $paymentAccepted;
     }
 
     /**
@@ -116,73 +164,25 @@ class LocalBusiness extends \OpenActive\Models\SchemaOrg\Place
     /**
      * @return string
      */
-    public function getPaymentAccepted()
+    public function getCurrenciesAccepted()
     {
-        return $this->paymentAccepted;
+        return $this->currenciesAccepted;
     }
 
     /**
-     * @param string $paymentAccepted
+     * @param string $currenciesAccepted
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPaymentAccepted($paymentAccepted)
+    public function setCurrenciesAccepted($currenciesAccepted)
     {
         $types = array(
             "string",
         );
 
-        $paymentAccepted = self::checkTypes($paymentAccepted, $types);
+        $currenciesAccepted = self::checkTypes($currenciesAccepted, $types);
 
-        $this->paymentAccepted = $paymentAccepted;
-    }
-
-    /**
-     * @return Organization
-     */
-    public function getBranchOf()
-    {
-        return $this->branchOf;
-    }
-
-    /**
-     * @param Organization $branchOf
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBranchOf($branchOf)
-    {
-        $types = array(
-            "Organization",
-        );
-
-        $branchOf = self::checkTypes($branchOf, $types);
-
-        $this->branchOf = $branchOf;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPriceRange()
-    {
-        return $this->priceRange;
-    }
-
-    /**
-     * @param string $priceRange
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPriceRange($priceRange)
-    {
-        $types = array(
-            "string",
-        );
-
-        $priceRange = self::checkTypes($priceRange, $types);
-
-        $this->priceRange = $priceRange;
+        $this->currenciesAccepted = $currenciesAccepted;
     }
 
 }

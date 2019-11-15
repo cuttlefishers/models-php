@@ -16,6 +16,30 @@ class MusicAlbum extends \OpenActive\Models\SchemaOrg\MusicPlaylist
     }
 
     /**
+     * Classification of the album by it's type of content: soundtrack, live album, studio album, etc.
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\MusicAlbumProductionType|null
+     */
+    protected $albumProductionType;
+
+    /**
+     * The kind of release which this album is: single, EP or album.
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\MusicAlbumReleaseType|null
+     */
+    protected $albumReleaseType;
+
+    /**
+     * The artist that performed this album or recording.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\MusicGroup
+     */
+    protected $byArtist;
+
+    /**
      * A release of this album.
      *
      *
@@ -24,28 +48,79 @@ class MusicAlbum extends \OpenActive\Models\SchemaOrg\MusicPlaylist
     protected $albumRelease;
 
     /**
-     * The artist that performed this album or recording.
-     *
-     *
-     * @var Person|\OpenActive\Models\SchemaOrg\MusicGroup
+     * @return \OpenActive\Enums\SchemaOrg\MusicAlbumProductionType|null
      */
-    protected $byArtist;
+    public function getAlbumProductionType()
+    {
+        return $this->albumProductionType;
+    }
 
     /**
-     * The kind of release which this album is: single, EP or album.
-     *
-     *
-     * @var \OpenActive\Enums\MusicAlbumReleaseType|null
+     * @param \OpenActive\Enums\SchemaOrg\MusicAlbumProductionType|null $albumProductionType
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    protected $albumReleaseType;
+    public function setAlbumProductionType($albumProductionType)
+    {
+        $types = array(
+            "\OpenActive\Enums\SchemaOrg\MusicAlbumProductionType",
+            "null",
+        );
+
+        $albumProductionType = self::checkTypes($albumProductionType, $types);
+
+        $this->albumProductionType = $albumProductionType;
+    }
 
     /**
-     * Classification of the album by it's type of content: soundtrack, live album, studio album, etc.
-     *
-     *
-     * @var \OpenActive\Enums\MusicAlbumProductionType|null
+     * @return \OpenActive\Enums\SchemaOrg\MusicAlbumReleaseType|null
      */
-    protected $albumProductionType;
+    public function getAlbumReleaseType()
+    {
+        return $this->albumReleaseType;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\MusicAlbumReleaseType|null $albumReleaseType
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAlbumReleaseType($albumReleaseType)
+    {
+        $types = array(
+            "\OpenActive\Enums\SchemaOrg\MusicAlbumReleaseType",
+            "null",
+        );
+
+        $albumReleaseType = self::checkTypes($albumReleaseType, $types);
+
+        $this->albumReleaseType = $albumReleaseType;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\MusicGroup
+     */
+    public function getByArtist()
+    {
+        return $this->byArtist;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\MusicGroup $byArtist
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setByArtist($byArtist)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\MusicGroup",
+        );
+
+        $byArtist = self::checkTypes($byArtist, $types);
+
+        $this->byArtist = $byArtist;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\MusicRelease
@@ -69,81 +144,6 @@ class MusicAlbum extends \OpenActive\Models\SchemaOrg\MusicPlaylist
         $albumRelease = self::checkTypes($albumRelease, $types);
 
         $this->albumRelease = $albumRelease;
-    }
-
-    /**
-     * @return Person|\OpenActive\Models\SchemaOrg\MusicGroup
-     */
-    public function getByArtist()
-    {
-        return $this->byArtist;
-    }
-
-    /**
-     * @param Person|\OpenActive\Models\SchemaOrg\MusicGroup $byArtist
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setByArtist($byArtist)
-    {
-        $types = array(
-            "Person",
-            "\OpenActive\Models\SchemaOrg\MusicGroup",
-        );
-
-        $byArtist = self::checkTypes($byArtist, $types);
-
-        $this->byArtist = $byArtist;
-    }
-
-    /**
-     * @return \OpenActive\Enums\MusicAlbumReleaseType|null
-     */
-    public function getAlbumReleaseType()
-    {
-        return $this->albumReleaseType;
-    }
-
-    /**
-     * @param \OpenActive\Enums\MusicAlbumReleaseType|null $albumReleaseType
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAlbumReleaseType($albumReleaseType)
-    {
-        $types = array(
-            "\OpenActive\Enums\MusicAlbumReleaseType",
-            "null",
-        );
-
-        $albumReleaseType = self::checkTypes($albumReleaseType, $types);
-
-        $this->albumReleaseType = $albumReleaseType;
-    }
-
-    /**
-     * @return \OpenActive\Enums\MusicAlbumProductionType|null
-     */
-    public function getAlbumProductionType()
-    {
-        return $this->albumProductionType;
-    }
-
-    /**
-     * @param \OpenActive\Enums\MusicAlbumProductionType|null $albumProductionType
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAlbumProductionType($albumProductionType)
-    {
-        $types = array(
-            "\OpenActive\Enums\MusicAlbumProductionType",
-            "null",
-        );
-
-        $albumProductionType = self::checkTypes($albumProductionType, $types);
-
-        $this->albumProductionType = $albumProductionType;
     }
 
 }

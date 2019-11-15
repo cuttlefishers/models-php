@@ -3,7 +3,6 @@
 namespace OpenActive\Models\SchemaOrg;
 
 /**
- * This type is derived from [Action](https://schema.org/Action), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
  *
  */
 class ConsumeAction extends \OpenActive\Models\SchemaOrg\Action
@@ -17,14 +16,6 @@ class ConsumeAction extends \OpenActive\Models\SchemaOrg\Action
     }
 
     /**
-     * An Offer which must be accepted before the user can perform the Action. For example, the user may need to buy a movie before being able to watch it.
-     *
-     *
-     * @var Offer
-     */
-    protected $expectsAcceptanceOf;
-
-    /**
      * A set of requirements that a must be fulfilled in order to perform an Action. If more than one value is specied, fulfilling one set of requirements will allow the Action to be performed.
      *
      *
@@ -33,28 +24,12 @@ class ConsumeAction extends \OpenActive\Models\SchemaOrg\Action
     protected $actionAccessibilityRequirement;
 
     /**
-     * @return Offer
+     * An Offer which must be accepted before the user can perform the Action. For example, the user may need to buy a movie before being able to watch it.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Offer
      */
-    public function getExpectsAcceptanceOf()
-    {
-        return $this->expectsAcceptanceOf;
-    }
-
-    /**
-     * @param Offer $expectsAcceptanceOf
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setExpectsAcceptanceOf($expectsAcceptanceOf)
-    {
-        $types = array(
-            "Offer",
-        );
-
-        $expectsAcceptanceOf = self::checkTypes($expectsAcceptanceOf, $types);
-
-        $this->expectsAcceptanceOf = $expectsAcceptanceOf;
-    }
+    protected $expectsAcceptanceOf;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\ActionAccessSpecification
@@ -78,6 +53,30 @@ class ConsumeAction extends \OpenActive\Models\SchemaOrg\Action
         $actionAccessibilityRequirement = self::checkTypes($actionAccessibilityRequirement, $types);
 
         $this->actionAccessibilityRequirement = $actionAccessibilityRequirement;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Offer
+     */
+    public function getExpectsAcceptanceOf()
+    {
+        return $this->expectsAcceptanceOf;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Offer $expectsAcceptanceOf
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setExpectsAcceptanceOf($expectsAcceptanceOf)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Offer",
+        );
+
+        $expectsAcceptanceOf = self::checkTypes($expectsAcceptanceOf, $types);
+
+        $this->expectsAcceptanceOf = $expectsAcceptanceOf;
     }
 
 }

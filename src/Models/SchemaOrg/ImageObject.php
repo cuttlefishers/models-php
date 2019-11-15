@@ -16,20 +16,12 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
     }
 
     /**
-     * The caption for this object. For downloadable machine formats (closed caption, subtitles etc.) use MediaObject and indicate the <a class="localLink" href="https://schema.org/encodingFormat">encodingFormat</a>.
+     * exif data for this object.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\MediaObject
+     * @var string|\OpenActive\Models\SchemaOrg\PropertyValue
      */
-    protected $caption;
-
-    /**
-     * Thumbnail image for an image or video.
-     *
-     *
-     * @var ImageObject
-     */
-    protected $thumbnail;
+    protected $exifData;
 
     /**
      * Indicates whether this image is representative of the content of the page.
@@ -40,60 +32,44 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
     protected $representativeOfPage;
 
     /**
-     * exif data for this object.
+     * Thumbnail image for an image or video.
      *
      *
-     * @var string|PropertyValue
+     * @var \OpenActive\Models\SchemaOrg\ImageObject
      */
-    protected $exifData;
+    protected $thumbnail;
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\MediaObject
+     * The caption for this object. For downloadable machine formats (closed caption, subtitles etc.) use MediaObject and indicate the <a class="localLink" href="https://schema.org/encodingFormat">encodingFormat</a>.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\MediaObject
      */
-    public function getCaption()
+    protected $caption;
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\PropertyValue
+     */
+    public function getExifData()
     {
-        return $this->caption;
+        return $this->exifData;
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\MediaObject $caption
+     * @param string|\OpenActive\Models\SchemaOrg\PropertyValue $exifData
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setCaption($caption)
+    public function setExifData($exifData)
     {
         $types = array(
             "string",
-            "\OpenActive\Models\SchemaOrg\MediaObject",
+            "\OpenActive\Models\SchemaOrg\PropertyValue",
         );
 
-        $caption = self::checkTypes($caption, $types);
+        $exifData = self::checkTypes($exifData, $types);
 
-        $this->caption = $caption;
-    }
-
-    /**
-     * @return ImageObject
-     */
-    public function getThumbnail()
-    {
-        return $this->thumbnail;
-    }
-
-    /**
-     * @param ImageObject $thumbnail
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setThumbnail($thumbnail)
-    {
-        $types = array(
-            "ImageObject",
-        );
-
-        $thumbnail = self::checkTypes($thumbnail, $types);
-
-        $this->thumbnail = $thumbnail;
+        $this->exifData = $exifData;
     }
 
     /**
@@ -122,28 +98,52 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
     }
 
     /**
-     * @return string|PropertyValue
+     * @return \OpenActive\Models\SchemaOrg\ImageObject
      */
-    public function getExifData()
+    public function getThumbnail()
     {
-        return $this->exifData;
+        return $this->thumbnail;
     }
 
     /**
-     * @param string|PropertyValue $exifData
+     * @param \OpenActive\Models\SchemaOrg\ImageObject $thumbnail
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setExifData($exifData)
+    public function setThumbnail($thumbnail)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\ImageObject",
+        );
+
+        $thumbnail = self::checkTypes($thumbnail, $types);
+
+        $this->thumbnail = $thumbnail;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\MediaObject
+     */
+    public function getCaption()
+    {
+        return $this->caption;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\MediaObject $caption
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCaption($caption)
     {
         $types = array(
             "string",
-            "PropertyValue",
+            "\OpenActive\Models\SchemaOrg\MediaObject",
         );
 
-        $exifData = self::checkTypes($exifData, $types);
+        $caption = self::checkTypes($caption, $types);
 
-        $this->exifData = $exifData;
+        $this->caption = $caption;
     }
 
 }

@@ -16,49 +16,23 @@ class ReceiveAction extends \OpenActive\Models\SchemaOrg\TransferAction
     }
 
     /**
-     * A sub property of participant. The participant who is at the sending end of the action.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Audience|Person|Organization
-     */
-    protected $sender;
-
-    /**
      * A sub property of instrument. The method of delivery.
      *
      *
-     * @var \OpenActive\Enums\DeliveryMethod|null
+     * @var \OpenActive\Enums\SchemaOrg\DeliveryMethod|null
      */
     protected $deliveryMethod;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Audience|Person|Organization
+     * A sub property of participant. The participant who is at the sending end of the action.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
-    public function getSender()
-    {
-        return $this->sender;
-    }
+    protected $sender;
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Audience|Person|Organization $sender
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSender($sender)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Audience",
-            "Person",
-            "Organization",
-        );
-
-        $sender = self::checkTypes($sender, $types);
-
-        $this->sender = $sender;
-    }
-
-    /**
-     * @return \OpenActive\Enums\DeliveryMethod|null
+     * @return \OpenActive\Enums\SchemaOrg\DeliveryMethod|null
      */
     public function getDeliveryMethod()
     {
@@ -66,20 +40,46 @@ class ReceiveAction extends \OpenActive\Models\SchemaOrg\TransferAction
     }
 
     /**
-     * @param \OpenActive\Enums\DeliveryMethod|null $deliveryMethod
+     * @param \OpenActive\Enums\SchemaOrg\DeliveryMethod|null $deliveryMethod
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDeliveryMethod($deliveryMethod)
     {
         $types = array(
-            "\OpenActive\Enums\DeliveryMethod",
+            "\OpenActive\Enums\SchemaOrg\DeliveryMethod",
             "null",
         );
 
         $deliveryMethod = self::checkTypes($deliveryMethod, $types);
 
         $this->deliveryMethod = $deliveryMethod;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
+     */
+    public function getSender()
+    {
+        return $this->sender;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $sender
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSender($sender)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Audience",
+            "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
+        );
+
+        $sender = self::checkTypes($sender, $types);
+
+        $this->sender = $sender;
     }
 
 }

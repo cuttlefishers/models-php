@@ -16,20 +16,12 @@ class DatedMoneySpecification extends \OpenActive\Models\SchemaOrg\StructuredVal
     }
 
     /**
-     * The start date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
+     * The end date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
      *
      *
      * @var DateTime|null
      */
-    protected $startDate;
-
-    /**
-     * The amount of money.
-     *
-     *
-     * @var float|\OpenActive\Models\SchemaOrg\MonetaryAmount|null
-     */
-    protected $amount;
+    protected $endDate;
 
     /**
      * The currency in which the monetary amount is expressed.<br/><br/>
@@ -42,36 +34,68 @@ class DatedMoneySpecification extends \OpenActive\Models\SchemaOrg\StructuredVal
     protected $currency;
 
     /**
-     * The end date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
+     * The amount of money.
+     *
+     *
+     * @var float|\OpenActive\Models\SchemaOrg\MonetaryAmount|null
+     */
+    protected $amount;
+
+    /**
+     * The start date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
      *
      *
      * @var DateTime|null
      */
-    protected $endDate;
+    protected $startDate;
 
     /**
      * @return DateTime|null
      */
-    public function getStartDate()
+    public function getEndDate()
     {
-        return $this->startDate;
+        return $this->endDate;
     }
 
     /**
-     * @param DateTime|null $startDate
+     * @param DateTime|null $endDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setStartDate($startDate)
+    public function setEndDate($endDate)
     {
         $types = array(
             "DateTime",
             "null",
         );
 
-        $startDate = self::checkTypes($startDate, $types);
+        $endDate = self::checkTypes($endDate, $types);
 
-        $this->startDate = $startDate;
+        $this->endDate = $endDate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * @param string $currency
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCurrency($currency)
+    {
+        $types = array(
+            "string",
+        );
+
+        $currency = self::checkTypes($currency, $types);
+
+        $this->currency = $currency;
     }
 
     /**
@@ -101,52 +125,28 @@ class DatedMoneySpecification extends \OpenActive\Models\SchemaOrg\StructuredVal
     }
 
     /**
-     * @return string
-     */
-    public function getCurrency()
-    {
-        return $this->currency;
-    }
-
-    /**
-     * @param string $currency
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCurrency($currency)
-    {
-        $types = array(
-            "string",
-        );
-
-        $currency = self::checkTypes($currency, $types);
-
-        $this->currency = $currency;
-    }
-
-    /**
      * @return DateTime|null
      */
-    public function getEndDate()
+    public function getStartDate()
     {
-        return $this->endDate;
+        return $this->startDate;
     }
 
     /**
-     * @param DateTime|null $endDate
+     * @param DateTime|null $startDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setEndDate($endDate)
+    public function setStartDate($startDate)
     {
         $types = array(
             "DateTime",
             "null",
         );
 
-        $endDate = self::checkTypes($endDate, $types);
+        $startDate = self::checkTypes($startDate, $types);
 
-        $this->endDate = $endDate;
+        $this->startDate = $startDate;
     }
 
 }

@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class DriveWheelConfigurationValue extends \OpenActive\Models\SchemaOrg\QualitativeValue
+class DriveWheelConfigurationValue extends \OpenActive\BaseModel
 {
     /**
      * @return string[]|null

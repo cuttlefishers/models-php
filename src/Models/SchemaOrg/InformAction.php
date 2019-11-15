@@ -19,12 +19,12 @@ class InformAction extends \OpenActive\Models\SchemaOrg\CommunicateAction
      * Upcoming or past event associated with this place, organization, or action.
      *
      *
-     * @var Event
+     * @var \OpenActive\Models\SchemaOrg\Event
      */
     protected $event;
 
     /**
-     * @return Event
+     * @return \OpenActive\Models\SchemaOrg\Event
      */
     public function getEvent()
     {
@@ -32,14 +32,14 @@ class InformAction extends \OpenActive\Models\SchemaOrg\CommunicateAction
     }
 
     /**
-     * @param Event $event
+     * @param \OpenActive\Models\SchemaOrg\Event $event
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEvent($event)
     {
         $types = array(
-            "Event",
+            "\OpenActive\Models\SchemaOrg\Event",
         );
 
         $event = self::checkTypes($event, $types);

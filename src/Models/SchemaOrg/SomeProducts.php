@@ -19,12 +19,12 @@ class SomeProducts extends \OpenActive\Models\SchemaOrg\Product
      * The current approximate inventory level for the item or items.
      *
      *
-     * @var QuantitativeValue
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
     protected $inventoryLevel;
 
     /**
-     * @return QuantitativeValue
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
     public function getInventoryLevel()
     {
@@ -32,14 +32,14 @@ class SomeProducts extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param QuantitativeValue $inventoryLevel
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue $inventoryLevel
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setInventoryLevel($inventoryLevel)
     {
         $types = array(
-            "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
         );
 
         $inventoryLevel = self::checkTypes($inventoryLevel, $types);

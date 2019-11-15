@@ -19,12 +19,12 @@ class BorrowAction extends \OpenActive\Models\SchemaOrg\TransferAction
      * A sub property of participant. The person that lends the object being borrowed.
      *
      *
-     * @var Person|Organization
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     protected $lender;
 
     /**
-     * @return Person|Organization
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     public function getLender()
     {
@@ -32,15 +32,15 @@ class BorrowAction extends \OpenActive\Models\SchemaOrg\TransferAction
     }
 
     /**
-     * @param Person|Organization $lender
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $lender
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLender($lender)
     {
         $types = array(
-            "Person",
-            "Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $lender = self::checkTypes($lender, $types);

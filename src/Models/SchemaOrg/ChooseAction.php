@@ -21,7 +21,7 @@ class ChooseAction extends \OpenActive\Models\SchemaOrg\AssessAction
      *
      * @var \OpenActive\Models\SchemaOrg\Thing|string
      */
-    protected $option;
+    protected $actionOption;
 
     /**
      * A sub property of object. The options subject to this action.
@@ -29,32 +29,7 @@ class ChooseAction extends \OpenActive\Models\SchemaOrg\AssessAction
      *
      * @var \OpenActive\Models\SchemaOrg\Thing|string
      */
-    protected $actionOption;
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Thing|string
-     */
-    public function getOption()
-    {
-        return $this->option;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Thing|string $option
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setOption($option)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Thing",
-            "string",
-        );
-
-        $option = self::checkTypes($option, $types);
-
-        $this->option = $option;
-    }
+    protected $option;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Thing|string
@@ -79,6 +54,31 @@ class ChooseAction extends \OpenActive\Models\SchemaOrg\AssessAction
         $actionOption = self::checkTypes($actionOption, $types);
 
         $this->actionOption = $actionOption;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Thing|string
+     */
+    public function getOption()
+    {
+        return $this->option;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Thing|string $option
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setOption($option)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Thing",
+            "string",
+        );
+
+        $option = self::checkTypes($option, $types);
+
+        $this->option = $option;
     }
 
 }

@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class SteeringPositionValue extends \OpenActive\Models\SchemaOrg\QualitativeValue
+class SteeringPositionValue extends \OpenActive\BaseModel
 {
     /**
      * @return string[]|null

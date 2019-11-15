@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class Enumeration extends \OpenActive\Models\SchemaOrg\Intangible
+class Enumeration extends \OpenActive\BaseModel
 {
     /**
      * @return string[]|null

@@ -16,28 +16,12 @@ class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * The number of pages in the book.
+     * The ISBN of the book.
      *
      *
-     * @var int|null
+     * @var string
      */
-    protected $numberOfPages;
-
-    /**
-     * The illustrator of the book.
-     *
-     *
-     * @var Person
-     */
-    protected $illustrator;
-
-    /**
-     * The format of the book.
-     *
-     *
-     * @var \OpenActive\Enums\BookFormatType|null
-     */
-    protected $bookFormat;
+    protected $isbn;
 
     /**
      * The edition of the book.
@@ -48,85 +32,51 @@ class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $bookEdition;
 
     /**
-     * The ISBN of the book.
+     * The format of the book.
      *
      *
-     * @var string
+     * @var \OpenActive\Enums\SchemaOrg\BookFormatType|null
      */
-    protected $isbn;
+    protected $bookFormat;
 
     /**
-     * @return int|null
+     * The illustrator of the book.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person
      */
-    public function getNumberOfPages()
+    protected $illustrator;
+
+    /**
+     * The number of pages in the book.
+     *
+     *
+     * @var int|null
+     */
+    protected $numberOfPages;
+
+    /**
+     * @return string
+     */
+    public function getIsbn()
     {
-        return $this->numberOfPages;
+        return $this->isbn;
     }
 
     /**
-     * @param int|null $numberOfPages
+     * @param string $isbn
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setNumberOfPages($numberOfPages)
+    public function setIsbn($isbn)
     {
         $types = array(
-            "int",
-            "null",
+            "string",
         );
 
-        $numberOfPages = self::checkTypes($numberOfPages, $types);
+        $isbn = self::checkTypes($isbn, $types);
 
-        $this->numberOfPages = $numberOfPages;
-    }
-
-    /**
-     * @return Person
-     */
-    public function getIllustrator()
-    {
-        return $this->illustrator;
-    }
-
-    /**
-     * @param Person $illustrator
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setIllustrator($illustrator)
-    {
-        $types = array(
-            "Person",
-        );
-
-        $illustrator = self::checkTypes($illustrator, $types);
-
-        $this->illustrator = $illustrator;
-    }
-
-    /**
-     * @return \OpenActive\Enums\BookFormatType|null
-     */
-    public function getBookFormat()
-    {
-        return $this->bookFormat;
-    }
-
-    /**
-     * @param \OpenActive\Enums\BookFormatType|null $bookFormat
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBookFormat($bookFormat)
-    {
-        $types = array(
-            "\OpenActive\Enums\BookFormatType",
-            "null",
-        );
-
-        $bookFormat = self::checkTypes($bookFormat, $types);
-
-        $this->bookFormat = $bookFormat;
+        $this->isbn = $isbn;
     }
 
     /**
@@ -154,27 +104,77 @@ class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return string
+     * @return \OpenActive\Enums\SchemaOrg\BookFormatType|null
      */
-    public function getIsbn()
+    public function getBookFormat()
     {
-        return $this->isbn;
+        return $this->bookFormat;
     }
 
     /**
-     * @param string $isbn
+     * @param \OpenActive\Enums\SchemaOrg\BookFormatType|null $bookFormat
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setIsbn($isbn)
+    public function setBookFormat($bookFormat)
     {
         $types = array(
-            "string",
+            "\OpenActive\Enums\SchemaOrg\BookFormatType",
+            "null",
         );
 
-        $isbn = self::checkTypes($isbn, $types);
+        $bookFormat = self::checkTypes($bookFormat, $types);
 
-        $this->isbn = $isbn;
+        $this->bookFormat = $bookFormat;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person
+     */
+    public function getIllustrator()
+    {
+        return $this->illustrator;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person $illustrator
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setIllustrator($illustrator)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Person",
+        );
+
+        $illustrator = self::checkTypes($illustrator, $types);
+
+        $this->illustrator = $illustrator;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getNumberOfPages()
+    {
+        return $this->numberOfPages;
+    }
+
+    /**
+     * @param int|null $numberOfPages
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setNumberOfPages($numberOfPages)
+    {
+        $types = array(
+            "int",
+            "null",
+        );
+
+        $numberOfPages = self::checkTypes($numberOfPages, $types);
+
+        $this->numberOfPages = $numberOfPages;
     }
 
 }

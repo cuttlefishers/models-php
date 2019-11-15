@@ -16,55 +16,55 @@ class BusinessAudience extends \OpenActive\Models\SchemaOrg\Audience
     }
 
     /**
-     * The number of employees in an organization e.g. business.
+     * The age of the business.
      *
      *
-     * @var QuantitativeValue
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
-    protected $numberOfEmployees;
+    protected $yearsInOperation;
 
     /**
      * The size of the business in annual revenue.
      *
      *
-     * @var QuantitativeValue
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
     protected $yearlyRevenue;
 
     /**
-     * The age of the business.
+     * The number of employees in an organization e.g. business.
      *
      *
-     * @var QuantitativeValue
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
-    protected $yearsInOperation;
+    protected $numberOfEmployees;
 
     /**
-     * @return QuantitativeValue
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
-    public function getNumberOfEmployees()
+    public function getYearsInOperation()
     {
-        return $this->numberOfEmployees;
+        return $this->yearsInOperation;
     }
 
     /**
-     * @param QuantitativeValue $numberOfEmployees
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue $yearsInOperation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setNumberOfEmployees($numberOfEmployees)
+    public function setYearsInOperation($yearsInOperation)
     {
         $types = array(
-            "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
         );
 
-        $numberOfEmployees = self::checkTypes($numberOfEmployees, $types);
+        $yearsInOperation = self::checkTypes($yearsInOperation, $types);
 
-        $this->numberOfEmployees = $numberOfEmployees;
+        $this->yearsInOperation = $yearsInOperation;
     }
 
     /**
-     * @return QuantitativeValue
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
     public function getYearlyRevenue()
     {
@@ -72,14 +72,14 @@ class BusinessAudience extends \OpenActive\Models\SchemaOrg\Audience
     }
 
     /**
-     * @param QuantitativeValue $yearlyRevenue
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue $yearlyRevenue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setYearlyRevenue($yearlyRevenue)
     {
         $types = array(
-            "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
         );
 
         $yearlyRevenue = self::checkTypes($yearlyRevenue, $types);
@@ -88,27 +88,27 @@ class BusinessAudience extends \OpenActive\Models\SchemaOrg\Audience
     }
 
     /**
-     * @return QuantitativeValue
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
-    public function getYearsInOperation()
+    public function getNumberOfEmployees()
     {
-        return $this->yearsInOperation;
+        return $this->numberOfEmployees;
     }
 
     /**
-     * @param QuantitativeValue $yearsInOperation
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue $numberOfEmployees
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setYearsInOperation($yearsInOperation)
+    public function setNumberOfEmployees($numberOfEmployees)
     {
         $types = array(
-            "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
         );
 
-        $yearsInOperation = self::checkTypes($yearsInOperation, $types);
+        $numberOfEmployees = self::checkTypes($numberOfEmployees, $types);
 
-        $this->yearsInOperation = $yearsInOperation;
+        $this->numberOfEmployees = $numberOfEmployees;
     }
 
 }

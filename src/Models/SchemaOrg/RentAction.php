@@ -16,6 +16,14 @@ class RentAction extends \OpenActive\Models\SchemaOrg\TradeAction
     }
 
     /**
+     * A sub property of participant. The owner of the real estate property.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     */
+    protected $landlord;
+
+    /**
      * A sub property of participant. The real estate agent involved in the action.
      *
      *
@@ -24,12 +32,29 @@ class RentAction extends \OpenActive\Models\SchemaOrg\TradeAction
     protected $realEstateAgent;
 
     /**
-     * A sub property of participant. The owner of the real estate property.
-     *
-     *
-     * @var Organization|Person
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
-    protected $landlord;
+    public function getLandlord()
+    {
+        return $this->landlord;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $landlord
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLandlord($landlord)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
+        );
+
+        $landlord = self::checkTypes($landlord, $types);
+
+        $this->landlord = $landlord;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\RealEstateAgent
@@ -53,31 +78,6 @@ class RentAction extends \OpenActive\Models\SchemaOrg\TradeAction
         $realEstateAgent = self::checkTypes($realEstateAgent, $types);
 
         $this->realEstateAgent = $realEstateAgent;
-    }
-
-    /**
-     * @return Organization|Person
-     */
-    public function getLandlord()
-    {
-        return $this->landlord;
-    }
-
-    /**
-     * @param Organization|Person $landlord
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setLandlord($landlord)
-    {
-        $types = array(
-            "Organization",
-            "Person",
-        );
-
-        $landlord = self::checkTypes($landlord, $types);
-
-        $this->landlord = $landlord;
     }
 
 }

@@ -16,33 +16,95 @@ class DeliveryChargeSpecification extends \OpenActive\Models\SchemaOrg\PriceSpec
     }
 
     /**
-     * The ISO 3166-1 (ISO 3166-1 alpha-2) or ISO 3166-2 code, the place, or the GeoShape for the geo-political region(s) for which the offer or delivery charge specification is valid.<br/><br/>
-     * 
-     * See also <a class="localLink" href="https://schema.org/ineligibleRegion">ineligibleRegion</a>.
+     * The delivery method(s) to which the delivery charge or payment charge specification applies.
      *
      *
-     * @var Place|string|\OpenActive\Models\SchemaOrg\GeoShape
+     * @var \OpenActive\Enums\SchemaOrg\DeliveryMethod|null
      */
-    protected $eligibleRegion;
+    protected $appliesToDeliveryMethod;
 
     /**
      * The geographic area where a service or offered item is provided.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\GeoShape|Place
+     * @var string|\OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\Place
      */
     protected $areaServed;
 
     /**
-     * The delivery method(s) to which the delivery charge or payment charge specification applies.
+     * The ISO 3166-1 (ISO 3166-1 alpha-2) or ISO 3166-2 code, the place, or the GeoShape for the geo-political region(s) for which the offer or delivery charge specification is valid.<br/><br/>
+     * 
+     * See also <a class="localLink" href="https://schema.org/ineligibleRegion">ineligibleRegion</a>.
      *
      *
-     * @var \OpenActive\Enums\DeliveryMethod|null
+     * @var \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\GeoShape
      */
-    protected $appliesToDeliveryMethod;
+    protected $eligibleRegion;
 
     /**
-     * @return Place|string|\OpenActive\Models\SchemaOrg\GeoShape
+     * The ISO 3166-1 (ISO 3166-1 alpha-2) or ISO 3166-2 code, the place, or the GeoShape for the geo-political region(s) for which the offer or delivery charge specification is not valid, e.g. a region where the transaction is not allowed.<br/><br/>
+     * 
+     * See also <a class="localLink" href="https://schema.org/eligibleRegion">eligibleRegion</a>.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\Place|string
+     */
+    protected $ineligibleRegion;
+
+    /**
+     * @return \OpenActive\Enums\SchemaOrg\DeliveryMethod|null
+     */
+    public function getAppliesToDeliveryMethod()
+    {
+        return $this->appliesToDeliveryMethod;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\DeliveryMethod|null $appliesToDeliveryMethod
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAppliesToDeliveryMethod($appliesToDeliveryMethod)
+    {
+        $types = array(
+            "\OpenActive\Enums\SchemaOrg\DeliveryMethod",
+            "null",
+        );
+
+        $appliesToDeliveryMethod = self::checkTypes($appliesToDeliveryMethod, $types);
+
+        $this->appliesToDeliveryMethod = $appliesToDeliveryMethod;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\Place
+     */
+    public function getAreaServed()
+    {
+        return $this->areaServed;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\Place $areaServed
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAreaServed($areaServed)
+    {
+        $types = array(
+            "string",
+            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
+            "\OpenActive\Models\SchemaOrg\GeoShape",
+            "\OpenActive\Models\SchemaOrg\Place",
+        );
+
+        $areaServed = self::checkTypes($areaServed, $types);
+
+        $this->areaServed = $areaServed;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\GeoShape
      */
     public function getEligibleRegion()
     {
@@ -50,14 +112,14 @@ class DeliveryChargeSpecification extends \OpenActive\Models\SchemaOrg\PriceSpec
     }
 
     /**
-     * @param Place|string|\OpenActive\Models\SchemaOrg\GeoShape $eligibleRegion
+     * @param \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\GeoShape $eligibleRegion
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEligibleRegion($eligibleRegion)
     {
         $types = array(
-            "Place",
+            "\OpenActive\Models\SchemaOrg\Place",
             "string",
             "\OpenActive\Models\SchemaOrg\GeoShape",
         );
@@ -68,55 +130,29 @@ class DeliveryChargeSpecification extends \OpenActive\Models\SchemaOrg\PriceSpec
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\GeoShape|Place
+     * @return \OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\Place|string
      */
-    public function getAreaServed()
+    public function getIneligibleRegion()
     {
-        return $this->areaServed;
+        return $this->ineligibleRegion;
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\GeoShape|Place $areaServed
+     * @param \OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\Place|string $ineligibleRegion
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setAreaServed($areaServed)
+    public function setIneligibleRegion($ineligibleRegion)
     {
         $types = array(
-            "string",
-            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
             "\OpenActive\Models\SchemaOrg\GeoShape",
-            "Place",
+            "\OpenActive\Models\SchemaOrg\Place",
+            "string",
         );
 
-        $areaServed = self::checkTypes($areaServed, $types);
+        $ineligibleRegion = self::checkTypes($ineligibleRegion, $types);
 
-        $this->areaServed = $areaServed;
-    }
-
-    /**
-     * @return \OpenActive\Enums\DeliveryMethod|null
-     */
-    public function getAppliesToDeliveryMethod()
-    {
-        return $this->appliesToDeliveryMethod;
-    }
-
-    /**
-     * @param \OpenActive\Enums\DeliveryMethod|null $appliesToDeliveryMethod
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAppliesToDeliveryMethod($appliesToDeliveryMethod)
-    {
-        $types = array(
-            "\OpenActive\Enums\DeliveryMethod",
-            "null",
-        );
-
-        $appliesToDeliveryMethod = self::checkTypes($appliesToDeliveryMethod, $types);
-
-        $this->appliesToDeliveryMethod = $appliesToDeliveryMethod;
+        $this->ineligibleRegion = $ineligibleRegion;
     }
 
 }

@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class DataType extends \OpenActive\Models\SchemaOrg\Class
+class DataType extends \OpenActive\BaseModel
 {
     /**
      * @return string[]|null

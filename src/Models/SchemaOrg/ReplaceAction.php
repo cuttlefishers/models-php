@@ -16,14 +16,6 @@ class ReplaceAction extends \OpenActive\Models\SchemaOrg\UpdateAction
     }
 
     /**
-     * A sub property of object. The object that replaces.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Thing
-     */
-    protected $replacer;
-
-    /**
      * A sub property of object. The object that is being replaced.
      *
      *
@@ -32,28 +24,12 @@ class ReplaceAction extends \OpenActive\Models\SchemaOrg\UpdateAction
     protected $replacee;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Thing
+     * A sub property of object. The object that replaces.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Thing
      */
-    public function getReplacer()
-    {
-        return $this->replacer;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Thing $replacer
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setReplacer($replacer)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Thing",
-        );
-
-        $replacer = self::checkTypes($replacer, $types);
-
-        $this->replacer = $replacer;
-    }
+    protected $replacer;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Thing
@@ -77,6 +53,30 @@ class ReplaceAction extends \OpenActive\Models\SchemaOrg\UpdateAction
         $replacee = self::checkTypes($replacee, $types);
 
         $this->replacee = $replacee;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Thing
+     */
+    public function getReplacer()
+    {
+        return $this->replacer;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Thing $replacer
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setReplacer($replacer)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Thing",
+        );
+
+        $replacer = self::checkTypes($replacer, $types);
+
+        $this->replacer = $replacer;
     }
 
 }

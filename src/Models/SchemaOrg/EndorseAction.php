@@ -19,12 +19,12 @@ class EndorseAction extends \OpenActive\Models\SchemaOrg\ReactAction
      * A sub property of participant. The person/organization being supported.
      *
      *
-     * @var Person|Organization
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     protected $endorsee;
 
     /**
-     * @return Person|Organization
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     public function getEndorsee()
     {
@@ -32,15 +32,15 @@ class EndorseAction extends \OpenActive\Models\SchemaOrg\ReactAction
     }
 
     /**
-     * @param Person|Organization $endorsee
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $endorsee
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEndorsee($endorsee)
     {
         $types = array(
-            "Person",
-            "Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $endorsee = self::checkTypes($endorsee, $types);

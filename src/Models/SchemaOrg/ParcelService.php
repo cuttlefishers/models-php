@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class ParcelService extends \OpenActive\Models\SchemaOrg\DeliveryMethod
+class ParcelService extends \OpenActive\BaseModel
 {
     /**
      * @return string[]|null

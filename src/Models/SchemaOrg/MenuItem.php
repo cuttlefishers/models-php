@@ -16,20 +16,12 @@ class MenuItem extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * Indicates a dietary restriction or guideline for which this recipe or menu item is suitable, e.g. diabetic, halal etc.
+     * Additional menu item(s) such as a side dish of salad or side order of fries that can be added to this menu item. Additionally it can be a menu section containing allowed add-on menu items for this menu item.
      *
      *
-     * @var \OpenActive\Enums\RestrictedDiet|null
+     * @var \OpenActive\Models\SchemaOrg\MenuSection|\OpenActive\Models\SchemaOrg\MenuItem
      */
-    protected $suitableForDiet;
-
-    /**
-     * An offer to provide this item&#x2014;for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
-     *
-     *
-     * @var Offer
-     */
-    protected $offers;
+    protected $menuAddOn;
 
     /**
      * Nutrition information about the recipe or menu item.
@@ -40,60 +32,44 @@ class MenuItem extends \OpenActive\Models\SchemaOrg\Intangible
     protected $nutrition;
 
     /**
-     * Additional menu item(s) such as a side dish of salad or side order of fries that can be added to this menu item. Additionally it can be a menu section containing allowed add-on menu items for this menu item.
+     * An offer to provide this item&#x2014;for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MenuSection|\OpenActive\Models\SchemaOrg\MenuItem
+     * @var \OpenActive\Models\SchemaOrg\Offer
      */
-    protected $menuAddOn;
+    protected $offers;
 
     /**
-     * @return \OpenActive\Enums\RestrictedDiet|null
+     * Indicates a dietary restriction or guideline for which this recipe or menu item is suitable, e.g. diabetic, halal etc.
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\RestrictedDiet|null
      */
-    public function getSuitableForDiet()
+    protected $suitableForDiet;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MenuSection|\OpenActive\Models\SchemaOrg\MenuItem
+     */
+    public function getMenuAddOn()
     {
-        return $this->suitableForDiet;
+        return $this->menuAddOn;
     }
 
     /**
-     * @param \OpenActive\Enums\RestrictedDiet|null $suitableForDiet
+     * @param \OpenActive\Models\SchemaOrg\MenuSection|\OpenActive\Models\SchemaOrg\MenuItem $menuAddOn
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setSuitableForDiet($suitableForDiet)
+    public function setMenuAddOn($menuAddOn)
     {
         $types = array(
-            "\OpenActive\Enums\RestrictedDiet",
-            "null",
+            "\OpenActive\Models\SchemaOrg\MenuSection",
+            "\OpenActive\Models\SchemaOrg\MenuItem",
         );
 
-        $suitableForDiet = self::checkTypes($suitableForDiet, $types);
+        $menuAddOn = self::checkTypes($menuAddOn, $types);
 
-        $this->suitableForDiet = $suitableForDiet;
-    }
-
-    /**
-     * @return Offer
-     */
-    public function getOffers()
-    {
-        return $this->offers;
-    }
-
-    /**
-     * @param Offer $offers
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setOffers($offers)
-    {
-        $types = array(
-            "Offer",
-        );
-
-        $offers = self::checkTypes($offers, $types);
-
-        $this->offers = $offers;
+        $this->menuAddOn = $menuAddOn;
     }
 
     /**
@@ -121,28 +97,52 @@ class MenuItem extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MenuSection|\OpenActive\Models\SchemaOrg\MenuItem
+     * @return \OpenActive\Models\SchemaOrg\Offer
      */
-    public function getMenuAddOn()
+    public function getOffers()
     {
-        return $this->menuAddOn;
+        return $this->offers;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MenuSection|\OpenActive\Models\SchemaOrg\MenuItem $menuAddOn
+     * @param \OpenActive\Models\SchemaOrg\Offer $offers
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setMenuAddOn($menuAddOn)
+    public function setOffers($offers)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\MenuSection",
-            "\OpenActive\Models\SchemaOrg\MenuItem",
+            "\OpenActive\Models\SchemaOrg\Offer",
         );
 
-        $menuAddOn = self::checkTypes($menuAddOn, $types);
+        $offers = self::checkTypes($offers, $types);
 
-        $this->menuAddOn = $menuAddOn;
+        $this->offers = $offers;
+    }
+
+    /**
+     * @return \OpenActive\Enums\SchemaOrg\RestrictedDiet|null
+     */
+    public function getSuitableForDiet()
+    {
+        return $this->suitableForDiet;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\RestrictedDiet|null $suitableForDiet
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSuitableForDiet($suitableForDiet)
+    {
+        $types = array(
+            "\OpenActive\Enums\SchemaOrg\RestrictedDiet",
+            "null",
+        );
+
+        $suitableForDiet = self::checkTypes($suitableForDiet, $types);
+
+        $this->suitableForDiet = $suitableForDiet;
     }
 
 }

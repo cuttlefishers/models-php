@@ -16,14 +16,6 @@ class TechArticle extends \OpenActive\Models\SchemaOrg\Article
     }
 
     /**
-     * Prerequisites needed to fulfill steps in article.
-     *
-     *
-     * @var string
-     */
-    protected $dependencies;
-
-    /**
      * Proficiency needed for this content; expected values: 'Beginner', 'Expert'.
      *
      *
@@ -32,28 +24,12 @@ class TechArticle extends \OpenActive\Models\SchemaOrg\Article
     protected $proficiencyLevel;
 
     /**
-     * @return string
+     * Prerequisites needed to fulfill steps in article.
+     *
+     *
+     * @var string
      */
-    public function getDependencies()
-    {
-        return $this->dependencies;
-    }
-
-    /**
-     * @param string $dependencies
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDependencies($dependencies)
-    {
-        $types = array(
-            "string",
-        );
-
-        $dependencies = self::checkTypes($dependencies, $types);
-
-        $this->dependencies = $dependencies;
-    }
+    protected $dependencies;
 
     /**
      * @return string
@@ -77,6 +53,30 @@ class TechArticle extends \OpenActive\Models\SchemaOrg\Article
         $proficiencyLevel = self::checkTypes($proficiencyLevel, $types);
 
         $this->proficiencyLevel = $proficiencyLevel;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDependencies()
+    {
+        return $this->dependencies;
+    }
+
+    /**
+     * @param string $dependencies
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDependencies($dependencies)
+    {
+        $types = array(
+            "string",
+        );
+
+        $dependencies = self::checkTypes($dependencies, $types);
+
+        $this->dependencies = $dependencies;
     }
 
 }

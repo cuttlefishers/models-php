@@ -16,14 +16,6 @@ class Audience extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * The geographic area associated with the audience.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\AdministrativeArea
-     */
-    protected $geographicArea;
-
-    /**
      * The target group associated with a given audience (e.g. veterans, car owners, musicians, etc.).
      *
      *
@@ -32,28 +24,12 @@ class Audience extends \OpenActive\Models\SchemaOrg\Intangible
     protected $audienceType;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\AdministrativeArea
+     * The geographic area associated with the audience.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\AdministrativeArea
      */
-    public function getGeographicArea()
-    {
-        return $this->geographicArea;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\AdministrativeArea $geographicArea
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setGeographicArea($geographicArea)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
-        );
-
-        $geographicArea = self::checkTypes($geographicArea, $types);
-
-        $this->geographicArea = $geographicArea;
-    }
+    protected $geographicArea;
 
     /**
      * @return string
@@ -77,6 +53,30 @@ class Audience extends \OpenActive\Models\SchemaOrg\Intangible
         $audienceType = self::checkTypes($audienceType, $types);
 
         $this->audienceType = $audienceType;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\AdministrativeArea
+     */
+    public function getGeographicArea()
+    {
+        return $this->geographicArea;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\AdministrativeArea $geographicArea
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setGeographicArea($geographicArea)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
+        );
+
+        $geographicArea = self::checkTypes($geographicArea, $types);
+
+        $this->geographicArea = $geographicArea;
     }
 
 }

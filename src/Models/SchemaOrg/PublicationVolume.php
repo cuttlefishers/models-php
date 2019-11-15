@@ -16,20 +16,12 @@ class PublicationVolume extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * The page on which the work starts; for example "135" or "xiii".
+     * Any description of pages that is not separated into pageStart and pageEnd; for example, "1-6, 9, 55" or "10-12, 46-49".
      *
      *
-     * @var int|string|null
+     * @var string
      */
-    protected $pageStart;
-
-    /**
-     * Identifies the volume of publication or multi-part work; for example, "iii" or "2".
-     *
-     *
-     * @var string|int|null
-     */
-    protected $volumeNumber;
+    protected $pagination;
 
     /**
      * The page on which the work ends; for example "138" or "xvi".
@@ -40,63 +32,43 @@ class PublicationVolume extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $pageEnd;
 
     /**
-     * Any description of pages that is not separated into pageStart and pageEnd; for example, "1-6, 9, 55" or "10-12, 46-49".
+     * Identifies the volume of publication or multi-part work; for example, "iii" or "2".
      *
      *
-     * @var string
+     * @var string|int|null
      */
-    protected $pagination;
+    protected $volumeNumber;
 
     /**
-     * @return int|string|null
+     * The page on which the work starts; for example "135" or "xiii".
+     *
+     *
+     * @var int|string|null
      */
-    public function getPageStart()
+    protected $pageStart;
+
+    /**
+     * @return string
+     */
+    public function getPagination()
     {
-        return $this->pageStart;
+        return $this->pagination;
     }
 
     /**
-     * @param int|string|null $pageStart
+     * @param string $pagination
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPageStart($pageStart)
-    {
-        $types = array(
-            "int",
-            "string",
-            "null",
-        );
-
-        $pageStart = self::checkTypes($pageStart, $types);
-
-        $this->pageStart = $pageStart;
-    }
-
-    /**
-     * @return string|int|null
-     */
-    public function getVolumeNumber()
-    {
-        return $this->volumeNumber;
-    }
-
-    /**
-     * @param string|int|null $volumeNumber
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setVolumeNumber($volumeNumber)
+    public function setPagination($pagination)
     {
         $types = array(
             "string",
-            "int",
-            "null",
         );
 
-        $volumeNumber = self::checkTypes($volumeNumber, $types);
+        $pagination = self::checkTypes($pagination, $types);
 
-        $this->volumeNumber = $volumeNumber;
+        $this->pagination = $pagination;
     }
 
     /**
@@ -126,27 +98,55 @@ class PublicationVolume extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return string
+     * @return string|int|null
      */
-    public function getPagination()
+    public function getVolumeNumber()
     {
-        return $this->pagination;
+        return $this->volumeNumber;
     }
 
     /**
-     * @param string $pagination
+     * @param string|int|null $volumeNumber
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPagination($pagination)
+    public function setVolumeNumber($volumeNumber)
     {
         $types = array(
             "string",
+            "int",
+            "null",
         );
 
-        $pagination = self::checkTypes($pagination, $types);
+        $volumeNumber = self::checkTypes($volumeNumber, $types);
 
-        $this->pagination = $pagination;
+        $this->volumeNumber = $volumeNumber;
+    }
+
+    /**
+     * @return int|string|null
+     */
+    public function getPageStart()
+    {
+        return $this->pageStart;
+    }
+
+    /**
+     * @param int|string|null $pageStart
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPageStart($pageStart)
+    {
+        $types = array(
+            "int",
+            "string",
+            "null",
+        );
+
+        $pageStart = self::checkTypes($pageStart, $types);
+
+        $this->pageStart = $pageStart;
     }
 
 }

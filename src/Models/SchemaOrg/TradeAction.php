@@ -3,7 +3,6 @@
 namespace OpenActive\Models\SchemaOrg;
 
 /**
- * This type is derived from [Action](https://schema.org/Action), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
  *
  */
 class TradeAction extends \OpenActive\Models\SchemaOrg\Action
@@ -15,6 +14,24 @@ class TradeAction extends \OpenActive\Models\SchemaOrg\Action
     {
         return "schema:TradeAction";
     }
+
+    /**
+     * One or more detailed price specifications, indicating the unit price and delivery or payment charges.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\PriceSpecification
+     */
+    protected $priceSpecification;
+
+    /**
+     * The currency of the price, or a price component when attached to <a class="localLink" href="https://schema.org/PriceSpecification">PriceSpecification</a> and its subtypes.<br/><br/>
+     * 
+     * Use standard formats: <a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217 currency format</a> e.g. "USD"; <a href="https://en.wikipedia.org/wiki/List_of_cryptocurrencies">Ticker symbol</a> for cryptocurrencies e.g. "BTC"; well known names for <a href="https://en.wikipedia.org/wiki/Local_exchange_trading_system">Local Exchange Tradings Systems</a> (LETS) and other currency types e.g. "Ithaca HOUR".
+     *
+     *
+     * @var string
+     */
+    protected $priceCurrency;
 
     /**
      * The offer price of a product, or of a price component when attached to PriceSpecification and its subtypes.<br/><br/>
@@ -35,47 +52,27 @@ class TradeAction extends \OpenActive\Models\SchemaOrg\Action
     protected $price;
 
     /**
-     * The currency of the price, or a price component when attached to <a class="localLink" href="https://schema.org/PriceSpecification">PriceSpecification</a> and its subtypes.<br/><br/>
-     * 
-     * Use standard formats: <a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217 currency format</a> e.g. "USD"; <a href="https://en.wikipedia.org/wiki/List_of_cryptocurrencies">Ticker symbol</a> for cryptocurrencies e.g. "BTC"; well known names for <a href="https://en.wikipedia.org/wiki/Local_exchange_trading_system">Local Exchange Tradings Systems</a> (LETS) and other currency types e.g. "Ithaca HOUR".
-     *
-     *
-     * @var string
+     * @return \OpenActive\Models\SchemaOrg\PriceSpecification
      */
-    protected $priceCurrency;
-
-    /**
-     * One or more detailed price specifications, indicating the unit price and delivery or payment charges.
-     *
-     *
-     * @var PriceSpecification
-     */
-    protected $priceSpecification;
-
-    /**
-     * @return string|float|null
-     */
-    public function getPrice()
+    public function getPriceSpecification()
     {
-        return $this->price;
+        return $this->priceSpecification;
     }
 
     /**
-     * @param string|float|null $price
+     * @param \OpenActive\Models\SchemaOrg\PriceSpecification $priceSpecification
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPrice($price)
+    public function setPriceSpecification($priceSpecification)
     {
         $types = array(
-            "string",
-            "float",
-            "null",
+            "\OpenActive\Models\SchemaOrg\PriceSpecification",
         );
 
-        $price = self::checkTypes($price, $types);
+        $priceSpecification = self::checkTypes($priceSpecification, $types);
 
-        $this->price = $price;
+        $this->priceSpecification = $priceSpecification;
     }
 
     /**
@@ -103,27 +100,29 @@ class TradeAction extends \OpenActive\Models\SchemaOrg\Action
     }
 
     /**
-     * @return PriceSpecification
+     * @return string|float|null
      */
-    public function getPriceSpecification()
+    public function getPrice()
     {
-        return $this->priceSpecification;
+        return $this->price;
     }
 
     /**
-     * @param PriceSpecification $priceSpecification
+     * @param string|float|null $price
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPriceSpecification($priceSpecification)
+    public function setPrice($price)
     {
         $types = array(
-            "PriceSpecification",
+            "string",
+            "float",
+            "null",
         );
 
-        $priceSpecification = self::checkTypes($priceSpecification, $types);
+        $price = self::checkTypes($price, $types);
 
-        $this->priceSpecification = $priceSpecification;
+        $this->price = $price;
     }
 
 }

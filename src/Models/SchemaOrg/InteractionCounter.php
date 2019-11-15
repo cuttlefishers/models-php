@@ -16,12 +16,12 @@ class InteractionCounter extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * The Action representing the type of interaction. For up votes, +1s, etc. use <a class="localLink" href="https://schema.org/LikeAction">LikeAction</a>. For down votes use <a class="localLink" href="https://schema.org/DislikeAction">DislikeAction</a>. Otherwise, use the most specific Action.
+     * The WebSite or SoftwareApplication where the interactions took place.
      *
      *
-     * @var Action
+     * @var \OpenActive\Models\SchemaOrg\SoftwareApplication|\OpenActive\Models\SchemaOrg\WebSite
      */
-    protected $interactionType;
+    protected $interactionService;
 
     /**
      * The number of interactions for the CreativeWork using the WebSite or SoftwareApplication.
@@ -32,35 +32,36 @@ class InteractionCounter extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $userInteractionCount;
 
     /**
-     * The WebSite or SoftwareApplication where the interactions took place.
+     * The Action representing the type of interaction. For up votes, +1s, etc. use <a class="localLink" href="https://schema.org/LikeAction">LikeAction</a>. For down votes use <a class="localLink" href="https://schema.org/DislikeAction">DislikeAction</a>. Otherwise, use the most specific Action.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\SoftwareApplication|\OpenActive\Models\SchemaOrg\WebSite
+     * @var \OpenActive\Models\SchemaOrg\Action
      */
-    protected $interactionService;
+    protected $interactionType;
 
     /**
-     * @return Action
+     * @return \OpenActive\Models\SchemaOrg\SoftwareApplication|\OpenActive\Models\SchemaOrg\WebSite
      */
-    public function getInteractionType()
+    public function getInteractionService()
     {
-        return $this->interactionType;
+        return $this->interactionService;
     }
 
     /**
-     * @param Action $interactionType
+     * @param \OpenActive\Models\SchemaOrg\SoftwareApplication|\OpenActive\Models\SchemaOrg\WebSite $interactionService
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setInteractionType($interactionType)
+    public function setInteractionService($interactionService)
     {
         $types = array(
-            "Action",
+            "\OpenActive\Models\SchemaOrg\SoftwareApplication",
+            "\OpenActive\Models\SchemaOrg\WebSite",
         );
 
-        $interactionType = self::checkTypes($interactionType, $types);
+        $interactionService = self::checkTypes($interactionService, $types);
 
-        $this->interactionType = $interactionType;
+        $this->interactionService = $interactionService;
     }
 
     /**
@@ -89,28 +90,27 @@ class InteractionCounter extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\SoftwareApplication|\OpenActive\Models\SchemaOrg\WebSite
+     * @return \OpenActive\Models\SchemaOrg\Action
      */
-    public function getInteractionService()
+    public function getInteractionType()
     {
-        return $this->interactionService;
+        return $this->interactionType;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\SoftwareApplication|\OpenActive\Models\SchemaOrg\WebSite $interactionService
+     * @param \OpenActive\Models\SchemaOrg\Action $interactionType
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setInteractionService($interactionService)
+    public function setInteractionType($interactionType)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\SoftwareApplication",
-            "\OpenActive\Models\SchemaOrg\WebSite",
+            "\OpenActive\Models\SchemaOrg\Action",
         );
 
-        $interactionService = self::checkTypes($interactionService, $types);
+        $interactionType = self::checkTypes($interactionType, $types);
 
-        $this->interactionService = $interactionService;
+        $this->interactionType = $interactionType;
     }
 
 }

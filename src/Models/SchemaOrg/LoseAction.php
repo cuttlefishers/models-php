@@ -19,12 +19,12 @@ class LoseAction extends \OpenActive\Models\SchemaOrg\AchieveAction
      * A sub property of participant. The winner of the action.
      *
      *
-     * @var Person
+     * @var \OpenActive\Models\SchemaOrg\Person
      */
     protected $winner;
 
     /**
-     * @return Person
+     * @return \OpenActive\Models\SchemaOrg\Person
      */
     public function getWinner()
     {
@@ -32,14 +32,14 @@ class LoseAction extends \OpenActive\Models\SchemaOrg\AchieveAction
     }
 
     /**
-     * @param Person $winner
+     * @param \OpenActive\Models\SchemaOrg\Person $winner
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setWinner($winner)
     {
         $types = array(
-            "Person",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $winner = self::checkTypes($winner, $types);

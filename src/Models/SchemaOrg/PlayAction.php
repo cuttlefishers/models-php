@@ -3,7 +3,6 @@
 namespace OpenActive\Models\SchemaOrg;
 
 /**
- * This type is derived from [Action](https://schema.org/Action), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
  *
  */
 class PlayAction extends \OpenActive\Models\SchemaOrg\Action
@@ -17,14 +16,6 @@ class PlayAction extends \OpenActive\Models\SchemaOrg\Action
     }
 
     /**
-     * Upcoming or past event associated with this place, organization, or action.
-     *
-     *
-     * @var Event
-     */
-    protected $event;
-
-    /**
      * An intended audience, i.e. a group for whom something was created.
      *
      *
@@ -33,28 +24,12 @@ class PlayAction extends \OpenActive\Models\SchemaOrg\Action
     protected $audience;
 
     /**
-     * @return Event
+     * Upcoming or past event associated with this place, organization, or action.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Event
      */
-    public function getEvent()
-    {
-        return $this->event;
-    }
-
-    /**
-     * @param Event $event
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setEvent($event)
-    {
-        $types = array(
-            "Event",
-        );
-
-        $event = self::checkTypes($event, $types);
-
-        $this->event = $event;
-    }
+    protected $event;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Audience
@@ -78,6 +53,30 @@ class PlayAction extends \OpenActive\Models\SchemaOrg\Action
         $audience = self::checkTypes($audience, $types);
 
         $this->audience = $audience;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Event
+     */
+    public function getEvent()
+    {
+        return $this->event;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Event $event
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEvent($event)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Event",
+        );
+
+        $event = self::checkTypes($event, $types);
+
+        $this->event = $event;
     }
 
 }

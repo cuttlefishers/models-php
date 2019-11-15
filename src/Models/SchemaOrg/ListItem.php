@@ -16,20 +16,12 @@ class ListItem extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * An entity represented by an entry in a list or data feed (e.g. an 'artist' in a list of 'artists')’.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Thing
-     */
-    protected $item;
-
-    /**
-     * A link to the ListItem that preceeds the current one.
+     * A link to the ListItem that follows the current one.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\ListItem
      */
-    protected $previousItem;
+    protected $nextItem;
 
     /**
      * The position of an item in a series or sequence of items.
@@ -40,59 +32,43 @@ class ListItem extends \OpenActive\Models\SchemaOrg\Intangible
     protected $position;
 
     /**
-     * A link to the ListItem that follows the current one.
+     * A link to the ListItem that preceeds the current one.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\ListItem
      */
-    protected $nextItem;
+    protected $previousItem;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Thing
+     * An entity represented by an entry in a list or data feed (e.g. an 'artist' in a list of 'artists')’.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Thing
      */
-    public function getItem()
-    {
-        return $this->item;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Thing $item
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setItem($item)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Thing",
-        );
-
-        $item = self::checkTypes($item, $types);
-
-        $this->item = $item;
-    }
+    protected $item;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\ListItem
      */
-    public function getPreviousItem()
+    public function getNextItem()
     {
-        return $this->previousItem;
+        return $this->nextItem;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\ListItem $previousItem
+     * @param \OpenActive\Models\SchemaOrg\ListItem $nextItem
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPreviousItem($previousItem)
+    public function setNextItem($nextItem)
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\ListItem",
         );
 
-        $previousItem = self::checkTypes($previousItem, $types);
+        $nextItem = self::checkTypes($nextItem, $types);
 
-        $this->previousItem = $previousItem;
+        $this->nextItem = $nextItem;
     }
 
     /**
@@ -124,25 +100,49 @@ class ListItem extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @return \OpenActive\Models\SchemaOrg\ListItem
      */
-    public function getNextItem()
+    public function getPreviousItem()
     {
-        return $this->nextItem;
+        return $this->previousItem;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\ListItem $nextItem
+     * @param \OpenActive\Models\SchemaOrg\ListItem $previousItem
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setNextItem($nextItem)
+    public function setPreviousItem($previousItem)
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\ListItem",
         );
 
-        $nextItem = self::checkTypes($nextItem, $types);
+        $previousItem = self::checkTypes($previousItem, $types);
 
-        $this->nextItem = $nextItem;
+        $this->previousItem = $previousItem;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Thing
+     */
+    public function getItem()
+    {
+        return $this->item;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Thing $item
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setItem($item)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Thing",
+        );
+
+        $item = self::checkTypes($item, $types);
+
+        $this->item = $item;
     }
 
 }

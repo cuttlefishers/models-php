@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class LockerDelivery extends \OpenActive\Models\SchemaOrg\DeliveryMethod
+class LockerDelivery extends \OpenActive\BaseModel
 {
     /**
      * @return string[]|null
