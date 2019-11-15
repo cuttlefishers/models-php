@@ -23,7 +23,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
      * "identifier": "SB1234"
      * ```
      *
-     * @var int|string|PropertyValue|PropertyValue[]|null
+     * @var int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     protected $identifier;
 
@@ -49,6 +49,14 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
      * @var string
      */
     protected $description;
+
+    /**
+     * Address of the Seller, used on tax receipts.
+     *
+     *
+     * @var \OpenActive\Models\OA\PostalAddress
+     */
+    protected $address;
 
     /**
      * The e-mail address of the person.
@@ -110,6 +118,17 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
     protected $jobTitle;
 
     /**
+     * The official name of the organization, e.g. the registered company name.
+     *
+     * ```json
+     * "legalName": "Central Speedball Ltd"
+     * ```
+     *
+     * @var string
+     */
+    protected $legalName;
+
+    /**
      * A logo for the person.
      *
      * ```json
@@ -119,7 +138,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
      * }
      * ```
      *
-     * @var ImageObject
+     * @var \OpenActive\Models\OA\ImageObject
      */
     protected $logo;
 
@@ -135,6 +154,14 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
     protected $sameAs;
 
     /**
+     * Either  https://openactive.io/TaxNet or  https://openactive.io/TaxGross
+     *
+     *
+     * @var \OpenActive\Enums\TaxMode|null
+     */
+    protected $taxMode;
+
+    /**
      * The telephone number of the person
      * This person must have given permission for their personal information to be shared as part of the open data.
      *
@@ -145,6 +172,14 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
      * @var string
      */
     protected $telephone;
+
+    /**
+     * The terms of service of the Seller.
+     *
+     *
+     * @var \OpenActive\Models\OA\Terms[]
+     */
+    protected $termsOfService;
 
     /**
      * A URL where more information about the person may be found
@@ -158,7 +193,26 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
     protected $url;
 
     /**
-     * @return int|string|PropertyValue|PropertyValue[]|null
+     * The Value-added Tax ID of the of the Seller.
+     *
+     *
+     * @var string
+     */
+    protected $vatID;
+
+    /**
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * Sometimes a description is stored with formatting (e.g. href, bold, italics, embedded YouTube videos). This formatting can be useful for data consumers.
+     * 
+     * If you are using this property, please join the discussion at proposal [#2](https://github.com/openactive/ns-beta/issues/2).
+     *
+     *
+     * @var string
+     */
+    protected $formattedDescription;
+
+    /**
+     * @return int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     public function getIdentifier()
     {
@@ -166,7 +220,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
     }
 
     /**
-     * @param int|string|PropertyValue|PropertyValue[]|null $identifier
+     * @param int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null $identifier
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -175,8 +229,8 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
         $types = array(
             "int",
             "string",
-            "PropertyValue",
-            "PropertyValue[]",
+            "\OpenActive\Models\OA\PropertyValue",
+            "\OpenActive\Models\OA\PropertyValue[]",
             "null",
         );
 
@@ -231,6 +285,30 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
         $description = self::checkTypes($description, $types);
 
         $this->description = $description;
+    }
+
+    /**
+     * @return \OpenActive\Models\OA\PostalAddress
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param \OpenActive\Models\OA\PostalAddress $address
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAddress($address)
+    {
+        $types = array(
+            "\OpenActive\Models\OA\PostalAddress",
+        );
+
+        $address = self::checkTypes($address, $types);
+
+        $this->address = $address;
     }
 
     /**
@@ -355,7 +433,31 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
     }
 
     /**
-     * @return ImageObject
+     * @return string
+     */
+    public function getLegalName()
+    {
+        return $this->legalName;
+    }
+
+    /**
+     * @param string $legalName
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLegalName($legalName)
+    {
+        $types = array(
+            "string",
+        );
+
+        $legalName = self::checkTypes($legalName, $types);
+
+        $this->legalName = $legalName;
+    }
+
+    /**
+     * @return \OpenActive\Models\OA\ImageObject
      */
     public function getLogo()
     {
@@ -363,14 +465,14 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
     }
 
     /**
-     * @param ImageObject $logo
+     * @param \OpenActive\Models\OA\ImageObject $logo
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLogo($logo)
     {
         $types = array(
-            "ImageObject",
+            "\OpenActive\Models\OA\ImageObject",
         );
 
         $logo = self::checkTypes($logo, $types);
@@ -403,6 +505,31 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
     }
 
     /**
+     * @return \OpenActive\Enums\TaxMode|null
+     */
+    public function getTaxMode()
+    {
+        return $this->taxMode;
+    }
+
+    /**
+     * @param \OpenActive\Enums\TaxMode|null $taxMode
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTaxMode($taxMode)
+    {
+        $types = array(
+            "\OpenActive\Enums\TaxMode",
+            "null",
+        );
+
+        $taxMode = self::checkTypes($taxMode, $types);
+
+        $this->taxMode = $taxMode;
+    }
+
+    /**
      * @return string
      */
     public function getTelephone()
@@ -427,6 +554,30 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
     }
 
     /**
+     * @return \OpenActive\Models\OA\Terms[]
+     */
+    public function getTermsOfService()
+    {
+        return $this->termsOfService;
+    }
+
+    /**
+     * @param \OpenActive\Models\OA\Terms[] $termsOfService
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTermsOfService($termsOfService)
+    {
+        $types = array(
+            "\OpenActive\Models\OA\Terms[]",
+        );
+
+        $termsOfService = self::checkTypes($termsOfService, $types);
+
+        $this->termsOfService = $termsOfService;
+    }
+
+    /**
      * @return string
      */
     public function getUrl()
@@ -448,6 +599,54 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
         $url = self::checkTypes($url, $types);
 
         $this->url = $url;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVatID()
+    {
+        return $this->vatID;
+    }
+
+    /**
+     * @param string $vatID
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setVatID($vatID)
+    {
+        $types = array(
+            "string",
+        );
+
+        $vatID = self::checkTypes($vatID, $types);
+
+        $this->vatID = $vatID;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFormattedDescription()
+    {
+        return $this->formattedDescription;
+    }
+
+    /**
+     * @param string $formattedDescription
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setFormattedDescription($formattedDescription)
+    {
+        $types = array(
+            "string",
+        );
+
+        $formattedDescription = self::checkTypes($formattedDescription, $types);
+
+        $this->formattedDescription = $formattedDescription;
     }
 
 }

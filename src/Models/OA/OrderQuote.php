@@ -20,7 +20,7 @@ class OrderQuote extends \OpenActive\Models\OA\Order
      * The Lease on the OrderItems which lasts for the duration specified by the Booking System.
      *
      *
-     * @var Lease
+     * @var \OpenActive\Models\OA\Lease
      */
     protected $lease;
 
@@ -45,13 +45,13 @@ class OrderQuote extends \OpenActive\Models\OA\Order
      * The payment associated with the Order by the Broker. It is required for cases where a payment has been taken.
      *
      *
-     * @var Payment
+     * @var \OpenActive\Models\OA\Payment
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $payment;
 
     /**
-     * @return Lease
+     * @return \OpenActive\Models\OA\Lease
      */
     public function getLease()
     {
@@ -59,14 +59,14 @@ class OrderQuote extends \OpenActive\Models\OA\Order
     }
 
     /**
-     * @param Lease $lease
+     * @param \OpenActive\Models\OA\Lease $lease
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLease($lease)
     {
         $types = array(
-            "Lease",
+            "\OpenActive\Models\OA\Lease",
         );
 
         $lease = self::checkTypes($lease, $types);
@@ -126,7 +126,7 @@ class OrderQuote extends \OpenActive\Models\OA\Order
     }
 
     /**
-     * @return Payment
+     * @return \OpenActive\Models\OA\Payment
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getPayment()
@@ -135,7 +135,7 @@ class OrderQuote extends \OpenActive\Models\OA\Order
     }
 
     /**
-     * @param Payment $payment
+     * @param \OpenActive\Models\OA\Payment $payment
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      * @deprecated This property is disinherited in this type, and must not be used.
@@ -143,7 +143,7 @@ class OrderQuote extends \OpenActive\Models\OA\Order
     public function setPayment($payment)
     {
         $types = array(
-            "Payment",
+            "\OpenActive\Models\OA\Payment",
         );
 
         $payment = self::checkTypes($payment, $types);

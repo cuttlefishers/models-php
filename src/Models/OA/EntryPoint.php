@@ -18,8 +18,8 @@ class EntryPoint extends \OpenActive\Models\SchemaOrg\EntryPoint
 
     /**
      * Must always be present and set to ```json
-"encodingType": "application/vnd.openactive.v1.0+json"
-```
+     * "encodingType": "application/vnd.openactive.v1.0+json"
+     * ```
      *
      * ```json
      * "encodingType": "application/vnd.openactive.v1.0+json"

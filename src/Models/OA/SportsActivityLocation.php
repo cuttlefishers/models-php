@@ -23,12 +23,12 @@ class SportsActivityLocation extends \OpenActive\Models\SchemaOrg\SportsActivity
      * "containedInPlace": "http://www.example.org/api/locations/8958f9b8-2004-4e90-80ff-50c98a9b121d"
      * ```
      *
-     * @var string|Place
+     * @var string|\OpenActive\Models\OA\Place
      */
     protected $containedInPlace;
 
     /**
-     * @return string|Place
+     * @return string|\OpenActive\Models\OA\Place
      */
     public function getContainedInPlace()
     {
@@ -36,7 +36,7 @@ class SportsActivityLocation extends \OpenActive\Models\SchemaOrg\SportsActivity
     }
 
     /**
-     * @param string|Place $containedInPlace
+     * @param string|\OpenActive\Models\OA\Place $containedInPlace
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -44,7 +44,7 @@ class SportsActivityLocation extends \OpenActive\Models\SchemaOrg\SportsActivity
     {
         $types = array(
             "string",
-            "Place",
+            "\OpenActive\Models\OA\Place",
         );
 
         $containedInPlace = self::checkTypes($containedInPlace, $types);

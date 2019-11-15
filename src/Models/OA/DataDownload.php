@@ -56,8 +56,8 @@ class DataDownload extends \OpenActive\Models\SchemaOrg\DataDownload
 
     /**
      * Must always be present and set to ```json
-"encodingFormat": "application/vnd.openactive.rpde+json; version=1"
-```
+     * "encodingFormat": "application/vnd.openactive.rpde+json; version=1"
+     * ```
      *
      * ```json
      * "encodingFormat": "application/vnd.openactive.rpde+json; version=1"

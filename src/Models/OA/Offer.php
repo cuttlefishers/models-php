@@ -23,7 +23,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
      * "identifier": "SB1234"
      * ```
      *
-     * @var int|string|PropertyValue|PropertyValue[]|null
+     * @var int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     protected $identifier;
 
@@ -85,16 +85,9 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
      * }
      * ```
      *
-     * @var QuantitativeValue
+     * @var \OpenActive\Models\OA\QuantitativeValue
      */
     protected $ageRange;
-
-    /**
-     *
-     *
-     * @var \OpenActive\Enums\AvailableChannelType[]|null
-     */
-    protected $availableChannel;
 
     /**
      * The duration before the startDate during which this Offer may not be cancelled, given in ISO 8601 format.
@@ -168,7 +161,18 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     protected $validFromBeforeStartDate;
 
     /**
-     * @return int|string|PropertyValue|PropertyValue[]|null
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * The channels through which a booking can be made.
+     * 
+     * If you are using this property, please join the discussion at proposal [#161](https://github.com/openactive/modelling-opportunity-data/issues/161).
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\AvailableChannelType[]|null
+     */
+    protected $availableChannel;
+
+    /**
+     * @return int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     public function getIdentifier()
     {
@@ -176,7 +180,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @param int|string|PropertyValue|PropertyValue[]|null $identifier
+     * @param int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null $identifier
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -185,8 +189,8 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
         $types = array(
             "int",
             "string",
-            "PropertyValue",
-            "PropertyValue[]",
+            "\OpenActive\Models\OA\PropertyValue",
+            "\OpenActive\Models\OA\PropertyValue[]",
             "null",
         );
 
@@ -294,7 +298,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @return QuantitativeValue
+     * @return \OpenActive\Models\OA\QuantitativeValue
      */
     public function getAgeRange()
     {
@@ -302,44 +306,19 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @param QuantitativeValue $ageRange
+     * @param \OpenActive\Models\OA\QuantitativeValue $ageRange
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAgeRange($ageRange)
     {
         $types = array(
-            "QuantitativeValue",
+            "\OpenActive\Models\OA\QuantitativeValue",
         );
 
         $ageRange = self::checkTypes($ageRange, $types);
 
         $this->ageRange = $ageRange;
-    }
-
-    /**
-     * @return \OpenActive\Enums\AvailableChannelType[]|null
-     */
-    public function getAvailableChannel()
-    {
-        return $this->availableChannel;
-    }
-
-    /**
-     * @param \OpenActive\Enums\AvailableChannelType[]|null $availableChannel
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAvailableChannel($availableChannel)
-    {
-        $types = array(
-            "\OpenActive\Enums\AvailableChannelType[]",
-            "null",
-        );
-
-        $availableChannel = self::checkTypes($availableChannel, $types);
-
-        $this->availableChannel = $availableChannel;
     }
 
     /**
@@ -513,6 +492,31 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
         $validFromBeforeStartDate = self::checkTypes($validFromBeforeStartDate, $types);
 
         $this->validFromBeforeStartDate = $validFromBeforeStartDate;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\AvailableChannelType[]|null
+     */
+    public function getAvailableChannel()
+    {
+        return $this->availableChannel;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\AvailableChannelType[]|null $availableChannel
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAvailableChannel($availableChannel)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\AvailableChannelType[]",
+            "null",
+        );
+
+        $availableChannel = self::checkTypes($availableChannel, $types);
+
+        $this->availableChannel = $availableChannel;
     }
 
 }
